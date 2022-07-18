@@ -17,9 +17,9 @@
     </head>
     <body>
         <div class="container">
-            <div class="darts">
-                
-                    <div class="fixplayer">
+            <div class="darts" id="darts">
+                <div id="pretstart">
+                    <div class="fixplayer" id="fixplayer" >
                         <div class="row">
                             <button class="Lesa hove" onclick="addplayer('lesa', 'button-lesa')" id="button-lesa" > Lesa</button>
                             <button class="Mam hove" onclick="addplayer('mam', 'button-mam')" id="button-mam"> Mam</button>
@@ -29,33 +29,19 @@
                             <button class="Vitali hove" onclick="addplayer('vit', 'button-vit')" id="button-vit"> Vitali</button>
                         </div>
                     </div>
-                    <div class="otherplayer">
+                    <div class="otherplayer" >
                         <input class="playername" type="text" id="input-other" >
                         <button class="butAddPlayer" onclick="addplayer('other', 'input-other')" id="button-other"> add player</button>
                     </div>       
-                <div class="realplayer">
-                    <div class="row" id="realplayer-place" >
-                        <div id='users'>
+                    <div class="realplayer" id="realplayer">
+                        <div class="row" id="realplayer-place" >
+                            <div id='users'>
+                            </div>
+                            <button id="startbutton" class="downbutton" onclick="startgame()" disabled> stargame</button>
                         </div>
-                        <button id="startbutton" class="downbutton" disabled> stargame</button>
                     </div>
                 </div>
-                <div class="tabel">
-                    <div class="nameMatch"> Game</div>
-                    <div class="round"> 
-                        <div>name</div>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div>5</div>
-                        <div>6</div>
-                        <div>7</div>
-                        <div>8</div>
-                        <div>9</div>
-                        <div>10</div>
-                    </div>
-                </div>
+                
             </div>
         </div>
         
