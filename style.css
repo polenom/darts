@@ -118,7 +118,12 @@ html {
 }
 
 
-@media screen and (max-width: 1080px) {
-    .
+@media screen and (max-width: 800px) {
+    .darts {
+        width: 100%;
+    }
+    .fixplayer button {
+        width: 100%;
+    }
 }
 
