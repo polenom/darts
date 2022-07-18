@@ -19,7 +19,7 @@ html {
 }
 
 .darts {
-    width: 47.5rem;
+    width: 32.5rem;
     height: 52rem;
     background-color: #3296a3;
     box-shadow: 0 0.5rem 3rem rgba(0,0, 0, 0.5);
@@ -33,7 +33,7 @@ html {
 }
 
 .fixplayer button {
-    width: calc(47.5rem/2);
+    width: calc(32.5rem/2);
     height: 5rem;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.8);
