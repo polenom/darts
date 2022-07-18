@@ -19,22 +19,21 @@ html {
 }
 
 .darts {
-    width: 85rem;
+    width: 67.5rem;
     height: 52rem;
     background-color: #3296a3;
     box-shadow: 0 0.5rem 3rem rgba(0,0, 0, 0.5);
+    
 }
 
-.players {
-    width: 70rem;
-    height: 10rem;
+.fixplayer {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:center;
 }
 
-.row button {
-    width: 12rem;
+.fixplayer button {
+    width: calc(67.5rem/2);
     height: 5rem;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.8);
@@ -45,6 +44,25 @@ html {
     text-transform: uppercase;
     transition: all 0.2s ease-in-out;
     text-align: center;
+    font-size: 2rem;
+}
+
+
+
+.players {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+}
+
+
+.otherplayer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .otherplayer button {
@@ -58,6 +76,11 @@ html {
     text-transform: uppercase;
     transition: all 0.2s ease-in-out;
     text-align: center;
+    font-size: 1.5rem;
+}
+
+.downbutton {
+    box-shadow: inset 5px 5px 10px rgba(0,0, 0, 0.5);
 }
 
 .players input {
@@ -95,6 +118,7 @@ html {
 }
 
 
-.fixplaer {
-    
+@media screen and (max-width: 1080px) {
+    .
 }
+

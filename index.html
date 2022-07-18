@@ -18,7 +18,7 @@
     <body>
         <div class="container">
             <div class="darts">
-                <div class="players">
+                
                     <div class="fixplayer">
                         <div class="row">
                             <button class="Lesa hove" onclick="addplayer('lesa', 'button-lesa')" id="button-lesa" > Lesa</button>
@@ -33,14 +33,11 @@
                         <input class="playername" type="text" id="input-other" >
                         <button class="butAddPlayer" onclick="addplayer('other', 'input-other')" id="button-other"> add player</button>
                     </div>       
-                </div>
                 <div class="realplayer">
                     <div class="row" id="realplayer-place" >
                         <div id='users'>
-                            <div>Lesa <i class="fa-solid fa-xmark"></i></div>
-                            <div>Lesa <i class="fa-solid fa-xmark"></i></div>
                         </div>
-                        <button disabled> stargame</button>
+                        <button id="startbutton" class="downbutton" disabled> stargame</button>
                     </div>
                 </div>
                 <div class="tabel">
@@ -57,14 +54,6 @@
                         <div>8</div>
                         <div>9</div>
                         <div>10</div>
-                    </div>
-                    <div class="players"> 
-                        <div class="player">
-                            <div class="name">Lesa</div>
-                            <input type="text" name="" id="player">
-                            <button > end </button>
-                            <div class="points"></div>
-                        </div>
                     </div>
                 </div>
             </div>

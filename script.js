@@ -1,5 +1,6 @@
 const realplayer = document.getElementById('realplayer-place');
 const users = document.getElementById('users');
+const start = document.getElementById('startbutton')
 let game = [];
 
 
@@ -14,11 +15,15 @@ function checkusername(name) {}
 
 function addplayer(name, id = '' ) {
     if (name == 'other') {
-        const user = document.getElementById('input-other')
+        const user = document.getElementById('input-other');
+        if ( user.value == '') {
+            return console.log('username missing')
+        }
         name = user.value
         user.value = '' 
     } else {
         const user = document.getElementById(id);
+        user.classList.toggle('downbutton');
         user.classList.toggle('hove');
         user.disabled = true;
     }
@@ -29,7 +34,13 @@ function addplayer(name, id = '' ) {
     }
     const adduser = new oneplayer(name);
     game.push(adduser);
-    users.innerHTML +=`<div id="table-${name}">${name}<i class="fa-solid fa-xmark" onclick="removeplayer('${name}')"></i></div>`
+    
+    if (game.length >= 2 && start.disabled) {
+        start.disabled = false;
+        start.classList.toggle('hove');
+        start.classList.toggle('downbutton');
+    } ;
+    users.innerHTML +=`<div id="table-${name}"><span class="num">${game.length})</span> ${name}<i class="fa-solid fa-xmark" onclick="removeplayer('${name}')"></i></div>`
     console.log(game);
 }
 
@@ -40,7 +51,23 @@ function removeplayer(name) {
     for (let i  = 0; i < game.length ; i++) {
         if ( game[i].name == name) {
             game.splice(i,1);
-            console.log(game)
         }
     }
+    const numbers = document.querySelectorAll("span.num");
+    const button = document.getElementById(`button-${name}`);
+    let num = 1;
+    for (let i of numbers) {
+        i.innerHTML = `${num}) `;
+        num++;
+    }
+    if ( game.length < 2 && !start.disabled) {
+        console.log('hhhhhhhhhhh')
+        start.disabled =true;
+        start.classList.toggle('hove');
+        start.classList.toggle('downbutton');
+
+    };
+    button.classList.toggle('hove');
+    button.classList.toggle('downbutton');
+    button.disabled = false;
 }
