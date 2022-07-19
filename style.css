@@ -181,3 +181,22 @@ html {
 .all li {
     width: 10%;
 }
+
+
+.click {
+    cursor: pointer;
+}
+
+
+.round button{
+    width: 10rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(145, 92, 182, 0.7);
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
