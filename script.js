@@ -1,10 +1,17 @@
-const realplayer = document.getElementById('realplayer-place');
+let realplayer = document.getElementById('realplayer-place');
 const users = document.getElementById('users');
 const start = document.getElementById('startbutton');
 const place = document.getElementById('darts');
 let game = [];
 let hod = 1;
 let round = 1;
+
+
+function checkSaveGame() {
+   if  (localStorage['game'] ) {
+        document.getElementById('return-game').innerHTML += `<button   onclick="returnGame()" > Return game</button>`
+   }
+}
 
 
 function oneplayer(name) {
@@ -37,6 +44,7 @@ function addplayer(name, id = '' ) {
     }
     const adduser = new oneplayer(name);
     game.push(adduser);
+    
     
     if (game.length >= 2 && start.disabled) {
         start.disabled = false;
@@ -139,16 +147,32 @@ function createround() {
     poleround.innerHTML = str + poleround.innerHTML
 }
 
-function hoduser() {
-    const userinput = document.getElementById('input-move');
-    if (userinput.value == '' ||  isNaN(+userinput.value)) {
-        return console.log('miss input')
+function hoduser(value = undefined) {
+    let userinput;
+    console.log(value, 777)
+    if (value == undefined) {
+        userinput = document.getElementById('input-move');
+        if (userinput.value == '' ||  isNaN(+userinput.value)) {
+            return console.log('miss input')
+        } else if ( 0 > +userinput.value || 180 < +userinput.value ) {
+            userinput.value = 'invalid range';
+            return console.log('invalid range');
+        } 
+        console.log(game[hod-1].sum + +userinput.value, 'summmmmmmmmmm')
+        if (game[hod-1].sum() + +userinput.value > 501 ){
+            userinput.value = 0
+        }
+        game[hod-1].round.push(+userinput.value);
+    } else {
+        console.log('value', value)
+        userinput = {};
+        userinput.value = value;
     }
     const nametext = document.getElementById('hodtext');
     let sum = document.getElementById(`sum-${hod}`);
     let roundsum = document.getElementById(`pole-${round}-${hod}`);
     let usertarget = document.getElementById(`user-${hod}`);
-    game[hod-1].round.push(+userinput.value);
+    saveGame();
     sum.innerHTML = game[hod-1].sum();
     roundsum.innerHTML = userinput.value;
     sum.classList.remove('target');
@@ -157,6 +181,12 @@ function hoduser() {
     roundsum.classList.add('click');
     usertarget.classList.remove('target');
     userinput.value = ''
+    if (game[hod-1].sum() == 501) {
+        document.getElementById('realplayer-place').innerHTML = ''
+        document.getElementById('realplayer-place').innerHTML = `<p id="hodtext">WINNER , ${game[hod-1].name}!!!!!!!!!!</p>`
+        localStorage.removeItem('game')
+        return undefined;
+    }
     if (hod + 1 > game.length ) {
         hod = 1;
         round++;
@@ -191,6 +221,7 @@ function changePointOK(r,h) {
     getelem.innerHTML = `${getelemok}`;
     getelem.setAttribute('ondblclick', `changePoint(${r},${h})`);
     game[h-1]['round'][r-1] = +getelemok;
+    saveGame();
     const getsum = document.getElementById(`sum-${h}`);
     getsum.innerHTML = game[h-1].sum();
    
@@ -213,3 +244,33 @@ function finishgame(yes=false) {
         elemfinish.innerHTML = '<button  class="hove" onclick="finishgame()" > game finish</button>'
     }
 }
+
+function saveGame() {
+    localStorage['game'] = JSON.stringify(game)
+}
+
+function returnGame() {
+    console.log('return game');
+    let gamejson = JSON.parse(localStorage['game']);
+    game = []
+    for (let i = 0; i < gamejson.length; i++ ) {
+        const user = new oneplayer(gamejson[i].name);
+        user.round = gamejson[i].round
+        game.push(user)
+    }
+    startgame();
+    console.log(game[0].round.length, game.length, 123 );
+    for (let r = 0; r < game[0].round.length; r++) {
+        console.log(r, 'rrrrrrrrrrrrrrrrrrrrrrrrrrr')
+        for (let h =0; h < game.length; h++) {
+            console.log(game[h].round[r], 'res')
+            if (game[h].round[r] >= 0) {
+                hoduser(game[h].round[r])
+            }
+        }
+    }
+
+}
+
+
+checkSaveGame()
