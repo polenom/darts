@@ -20,7 +20,7 @@ html {
 
 .darts {
     width: 100rem;
-    height: 52rem;
+    height: 100vh;
     background-color: #3296a3;
     box-shadow: 0 0.5rem 3rem rgba(0,0, 0, 0.5);
     

@@ -181,16 +181,24 @@ function hoduser(value = undefined) {
     roundsum.classList.add('click');
     usertarget.classList.remove('target');
     userinput.value = ''
-    if (game[hod-1].sum() == 501) {
-        document.getElementById('realplayer-place').innerHTML = ''
-        document.getElementById('realplayer-place').innerHTML = `<p id="hodtext">WINNER , ${game[hod-1].name}!!!!!!!!!!</p>`
-        localStorage.removeItem('game')
-        return undefined;
-    }
     if (hod + 1 > game.length ) {
-        hod = 1;
-        round++;
-        createround();
+        let sum = [];
+        for (let i = 0 ; i < game.length ; i++) {
+            if (game[i].sum() == 501) {
+                sum.push(game[i])
+            }
+        }
+        if (sum.length > 0) {
+            document.getElementById('realplayer-place').innerHTML = ''
+            document.getElementById('realplayer-place').innerHTML = `<p id="hodtext">WINNER${sum.length > 1?'S':''} , ${sum.map(a=> a.name).join(', ')}!!!!!!!!!!</p>`
+            localStorage.removeItem('game')
+            return undefined;
+        }
+        else {
+            hod = 1;
+            round++; 
+            createround();
+        }
     } else {
         hod++;
     }
